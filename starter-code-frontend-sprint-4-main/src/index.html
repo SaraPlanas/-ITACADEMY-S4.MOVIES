@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+    <script type="text/javascript" src="data.js">
+    </script>
+    <script type="text/javascript" src="films.js">
+    </script>
+</head>
+
 <body>
 
     <h1>Sprint 4 IT ACADEMY</h1>
-    
+    <div id="directores"> <button type="button" onclick="getAllDirectors()" class="btn">Imprimir directores</button></div>
+    <div id="peliculasDirector"> <button type="button" onclick="getMoviesFromDirector()" class="btn">Imprimir peliculas por director</button></div>
+    <div id="mostrarPuntuacionDirector"> <button type="button" onclick="moviesAverageOfDirector()" class="btn">Media de peliculas segun Director</button></div>
+    <div id="mostrar lista ordenada de peliculas"> <button type="button" onclick="orderAlphabetically()" class="btn">Ordenar peliculas alfabeticamente (solo 20)</button></div>
+    <div id="mostrar lista de peliculas ordenada por año"> <button type="button" onclick="orderByYear()" class="btn">Ordenar peliculas por anyo</button></div>
+
 </body>
+
 
 </html>
