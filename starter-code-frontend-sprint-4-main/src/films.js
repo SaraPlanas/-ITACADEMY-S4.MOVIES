@@ -22,7 +22,7 @@ function getMoviesFromDirector( /*array, director*/ ) {
 
 // Exercise 3: Calculate the average of the films of a given director.
 function moviesAverageOfDirector( /*array, director*/ ) {
-    const result = movies.filter(movie => movie.director === "Federico Fellini")
+    const result = movies.filter(movie => movie.director === "Steven Spielberg");
     var mostrarPuntuacion = result.reduce(function(acumulador, siguienteValor) {
         return {
             score: acumulador.score + siguienteValor.score
@@ -53,17 +53,40 @@ function orderAlphabetically( /*array */ ) {
 
 // Exercise 5: Order by year, ascending
 function orderByYear() {
-    var ordenado = (movies.sort((a, b) => a.year.toString().localeCompare(b.year.toString())).sort((a, b) => b.title - a.title));
-    console.log(movies)
+    let ordenado = movies.sort((a, b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0)))
+    console.log(ordenado)
 }
 
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory() {
+    const result = movies.filter(movie => movie.genre[''] === "Adventure")
+    console.log(result)
 
+    var mostrarPuntuacion = result.reduce(function(acumulador, siguienteValor) {
+        return {
+            score: acumulador.score + siguienteValor.score
+        };
+    }, { score: 0 });
+    console.log("Puntuacion total:" + mostrarPuntuacion.score)
+    console.log("Total peliculas:" + result.length)
+    var media = (mostrarPuntuacion.score / result.length);
+    console.log("Total media:" + media)
 }
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes() {
+    const convertToMinutes = (timeStr) => {
+        const [, hours, mins] = timeStr.match(/(?:(\d)h )?(\d+)min/)
+            .map(v => parseInt(v, 10));
+        return hours * 60 + mins;
+    }
+
+    const filmsWithNewDurations = movies.map(film => ({
+        ...film,
+        duration: convertToMinutes(film.duration)
+    }));
+
+    console.log(filmsWithNewDurations);
 
 }
 
