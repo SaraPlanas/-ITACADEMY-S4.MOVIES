@@ -66,15 +66,10 @@ function orderByYear() {
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory() {
     
-   // var result = movies.filter((movie) =>  movie.genre === "Crime");
-    //const result = movies.filter(p=>p.genre.filter(j => j.genre === "Crime")) ;
-   // const result = movies.filter(movie => movie.genre === "Adventure")
-//var result=[];
-//for (let index = 0; index < movies.length; index++){
-//    if (movies[index].genre=="Crime"){
-//        result.push(movies[index])
- //   }
-//}
+let result = movies.filter((movie) =>
+movie.genre.includes("Adventure")
+);
+console.log("Listado de peliculas con el genero 'Adventure':")
 
    console.log(result)
 
@@ -108,6 +103,7 @@ function hoursToMinutes() {
 
 // Exercise 8: Get the best film of a year
 function bestFilmOfYear() {
+
 
 }
 
