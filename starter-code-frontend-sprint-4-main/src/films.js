@@ -1,3 +1,5 @@
+
+
 function printDirectors() {
     console.log(movies)
     let directors = getAllDirectors(movies);
@@ -18,12 +20,14 @@ function getAllDirectors( /*array*/ ) {
 function getMoviesFromDirector( /*array, director*/ ) {
     const result = movies.filter(movie => movie.director === "Steven Spielberg");
     console.log(result);
+    return result
 }
 
 // Exercise 3: Calculate the average of the films of a given director.
 function moviesAverageOfDirector( /*array, director*/ ) {
-    const result = movies.filter(movie => movie.director === "Steven Spielberg");
-    var mostrarPuntuacion = result.reduce(function(acumulador, siguienteValor) {
+    console.log("Listado de peliculas segun director:")
+   const result = getMoviesFromDirector();
+       var mostrarPuntuacion = result.reduce(function(acumulador, siguienteValor) {
         return {
             score: acumulador.score + siguienteValor.score
         };
@@ -45,22 +49,34 @@ function orderAlphabetically( /*array */ ) {
         }
         return 0;
     });
-    console.log(movies)
-    const n = 20;
+        const n = 20;
     let pelisOrdenadas = movies.slice(0, n)
+    console.log("Listado de las 20 primeras peliculas ordenadas alfabeticametne:")
     console.log(pelisOrdenadas)
+
 }
 
 // Exercise 5: Order by year, ascending
 function orderByYear() {
     let ordenado = movies.sort((a, b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0)))
+    console.log("Listado de peliculas ordenadas alfabeticametne y por año:")
     console.log(ordenado)
 }
 
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory() {
-    const result = movies.filter(movie => movie.genre[''] === "Adventure")
-    console.log(result)
+    
+   // var result = movies.filter((movie) =>  movie.genre === "Crime");
+    //const result = movies.filter(p=>p.genre.filter(j => j.genre === "Crime")) ;
+   // const result = movies.filter(movie => movie.genre === "Adventure")
+//var result=[];
+//for (let index = 0; index < movies.length; index++){
+//    if (movies[index].genre=="Crime"){
+//        result.push(movies[index])
+ //   }
+//}
+
+   console.log(result)
 
     var mostrarPuntuacion = result.reduce(function(acumulador, siguienteValor) {
         return {
