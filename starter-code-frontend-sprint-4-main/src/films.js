@@ -1,13 +1,6 @@
-function printDirectors() {
-    console.log(movies)
-    let directors = getAllDirectors(movies);
-    document.getElementById("directors").innerHTML = "<h1>test</h1>"
-    var mostrarDirectores = movies.map(function(movie) {
-        return '<il>' + movie.director + '</il>';
-    }).join('')
-}
 
-function getAllDirectors(movies) {
+
+function getAllDirectors(/*array*/) {
     var mostrarDirectores = movies.map(function(movie) {
         return movie.director
     })
@@ -107,8 +100,21 @@ function hoursToMinutes() {
 
 // Exercise 8: Get the best film of a year
 function bestFilmOfYear() {
+    const result = movies.filter(movie => movie.year === 2003);
+    console.log(result);
+    
+    result.sort(function(a, b) {
+        if (a.score > b.score) {
+            return 1;
+        }
+        if (a.score < b.score) {
+            return -1;
+        }
+        return 0;
+    });    
 
-
+    mejorPeliculaAno = result.slice(result.length-1)
+    console.log(mejorPeliculaAno);
 }
 
 
