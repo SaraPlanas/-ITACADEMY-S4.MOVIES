@@ -1,5 +1,5 @@
 
-
+// Exercise 1: 
 function getAllDirectors(/*array*/) {
     var mostrarDirectores = movies.map(function(movie) {
         return movie.director
