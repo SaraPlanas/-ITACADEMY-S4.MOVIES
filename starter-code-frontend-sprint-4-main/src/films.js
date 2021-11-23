@@ -1,5 +1,3 @@
-
-
 function printDirectors() {
     console.log(movies)
     let directors = getAllDirectors(movies);
@@ -9,7 +7,7 @@ function printDirectors() {
     }).join('')
 }
 
-function getAllDirectors( /*array*/ ) {
+function getAllDirectors(movies) {
     var mostrarDirectores = movies.map(function(movie) {
         return movie.director
     })
@@ -26,8 +24,8 @@ function getMoviesFromDirector( /*array, director*/ ) {
 // Exercise 3: Calculate the average of the films of a given director.
 function moviesAverageOfDirector( /*array, director*/ ) {
     console.log("Listado de peliculas segun director:")
-   const result = getMoviesFromDirector();
-       var mostrarPuntuacion = result.reduce(function(acumulador, siguienteValor) {
+    const result = getMoviesFromDirector();
+    var mostrarPuntuacion = result.reduce(function(acumulador, siguienteValor) {
         return {
             score: acumulador.score + siguienteValor.score
         };
@@ -49,7 +47,7 @@ function orderAlphabetically( /*array */ ) {
         }
         return 0;
     });
-        const n = 20;
+    const n = 20;
     let pelisOrdenadas = movies.slice(0, n)
     console.log("Listado de las 20 primeras peliculas ordenadas alfabeticametne:")
     console.log(pelisOrdenadas)
@@ -65,13 +63,13 @@ function orderByYear() {
 
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory() {
-    
-let result = movies.filter((movie) =>
-movie.genre.includes("Adventure")
-);
-console.log("Listado de peliculas con el genero 'Adventure':")
 
-   console.log(result)
+    let result = movies.filter((movie) =>
+        movie.genre.includes("Adventure")
+    );
+    console.log("Listado de peliculas con el genero 'Adventure':")
+
+    console.log(result)
 
     var mostrarPuntuacion = result.reduce(function(acumulador, siguienteValor) {
         return {
@@ -87,17 +85,23 @@ console.log("Listado de peliculas con el genero 'Adventure':")
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes() {
     const convertToMinutes = (timeStr) => {
-        const [, hours, mins] = timeStr.match(/(?:(\d)h )?(\d+)min/)
-            .map(v => parseInt(v, 10));
-        return hours * 60 + mins;
+        let results = timeStr.match(/(?:(\d)h )?(\d+)min/)
+        if (results != null) {
+            const [, hours, mins] = results;
+            return (Number(hours) * 60) + Number(mins);
+        } else {
+            const [, hours] = timeStr.match(/(\d)/);
+            return (Number(hours) * 60);
+        }
+
     }
 
-    const filmsWithNewDurations = movies.map(film => ({
-        ...film,
-        duration: convertToMinutes(film.duration)
+    const peliculasNuevaDuracion = movies.map(movie => ({
+        ...movie,
+        duration: convertToMinutes(movie.duration)
     }));
 
-    console.log(filmsWithNewDurations);
+    console.log(peliculasNuevaDuracion);
 
 }
 
