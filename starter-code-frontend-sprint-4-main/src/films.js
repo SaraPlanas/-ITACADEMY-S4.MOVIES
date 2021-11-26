@@ -1,50 +1,28 @@
-
 // Exercise 1: 
 function getAllDirectors(array) {
-    const movies = require('../src/data');
-    var array = movies;
-    
-    //var mostrarDirectores = array.map(function(movie) {
-    //    return movie.director
-    //})
-    const mostrarDirectores = array.map(movie => movie.director);
-    
-    return mostrarDirectores;
-    //console.log(mostrarDirectores)
+    return array.map(movie => movie.director);
 }
 
 // Exercise 2: Get the films of a certain director
-function getMoviesFromDirector( array, director ) {
-    const movies = require('../src/data');
-    var array = movies;
-var director = ''
-    const result = array.filter(movie => movie.director === director);
- // console.log(result);
-    
-    return result
+function getMoviesFromDirector(array, director) {
+    return array.filter(movie => movie.director === director);
 }
 
 // Exercise 3: Calculate the average of the films of a given director.
-function moviesAverageOfDirector( array, director ) {
-    //console.log("Listado de peliculas segun director:")
-    const result = getMoviesFromDirector();
+function moviesAverageOfDirector(array, director) {
+    const result = getMoviesFromDirector(array, director);
     var mostrarPuntuacion = result.reduce(function(acumulador, siguienteValor) {
         return {
             score: acumulador.score + siguienteValor.score
         };
     }, { score: 0 });
-    //console.log("Puntuacion total:" + mostrarPuntuacion.score)
-    //console.log("Total peliculas:" + result.length)
-    var media = parseInt((mostrarPuntuacion.score / result.length).toFixed(2));
-    //console.log("Total media:" + media)
+    var media = Number((mostrarPuntuacion.score / result.length).toFixed(2));
     return media;
 }
 
 // Exercise 4:  Alphabetic order by title 
-function orderAlphabetically( array ) {
-    const movies = require('../src/data');
-    var array = movies;
-    array.sort(function(a, b) {
+function orderAlphabetically(array) {
+    let peliculasOrdenadas = [...array].sort(function(a, b) {
         if (a.title > b.title) {
             return 1;
         }
@@ -53,52 +31,34 @@ function orderAlphabetically( array ) {
         }
         return 0;
     });
-    var pelis = array;
     const n = 20;
-    let pelisOrdenadas = array.slice(0, n)
-    //console.log("Listado de las 20 primeras peliculas ordenadas alfabeticametne:")
-    //console.log(pelisOrdenadas)
-    
-    return pelisOrdenadas
-    
-
+    let pelisOrdenadas = peliculasOrdenadas.slice(0, n)
+    return pelisOrdenadas.map(pelicula => pelicula.title)
 }
 
 // Exercise 5: Order by year, ascending
-function orderByYear() {
-    const movies = require('../src/data');
-    
-    let ordenado = movies.sort((a, b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0)))
-   // console.log("Listado de peliculas ordenadas alfabeticametne y por año:")
-    //console.log(ordenado)
+function orderByYear(array) {
+    let ordenado = [...array].sort((a, b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0)))
     return ordenado
 }
 
 // Exercise 6: Calculate the average of the movies in a category
-function moviesAverageByCategory() {
-    const movies = require('../src/data');
-    
-    let result = movies.filter((movie) =>
-        movie.genre.includes("Adventure")
+function moviesAverageByCategory(array, category) {
+    let result = array.filter((movie) =>
+        movie.genre.includes(category)
     );
-    //console.log("Listado de peliculas con el genero 'Adventure':")
-
-    //console.log(result)
-
     var mostrarPuntuacion = result.reduce(function(acumulador, siguienteValor) {
         return {
             score: acumulador.score + siguienteValor.score
         };
     }, { score: 0 });
-    //console.log("Puntuacion total:" + mostrarPuntuacion.score)
-    //console.log("Total peliculas:" + result.length)
-    var media = (mostrarPuntuacion.score / result.length);
-    //console.log("Total media:" + media)
+    let numberOfMoviesWithScore = result.filter(movie => movie.score).length
+    var media = (mostrarPuntuacion.score / numberOfMoviesWithScore);
+    return media;
 }
 
 // Exercise 7: Modify the duration of movies to minutes
-function hoursToMinutes() {
-    const movies = require('../src/data');
+function hoursToMinutes(array) {
     const convertToMinutes = (timeStr) => {
         let results = timeStr.match(/(?:(\d)h )?(\d+)min/)
         if (results != null) {
@@ -108,25 +68,17 @@ function hoursToMinutes() {
             const [, hours] = timeStr.match(/(\d)/);
             return (Number(hours) * 60);
         }
-
     }
-
-    const peliculasNuevaDuracion = movies.map(movie => ({
+    const peliculasNuevaDuracion = array.map(movie => ({
         ...movie,
         duration: convertToMinutes(movie.duration)
     }));
-
-   // console.log(peliculasNuevaDuracion);
-return peliculasNuevaDuracion
+    return peliculasNuevaDuracion
 }
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear() {
-    const movies = require('../src/data');
-
-    const result = movies.filter(movie => movie.year );
-    //console.log(result);
-    
+function bestFilmOfYear(array) {
+    const result = array.filter(movie => movie.year);
     result.sort(function(a, b) {
         if (a.score > b.score) {
             return 1;
@@ -135,14 +87,10 @@ function bestFilmOfYear() {
             return -1;
         }
         return 0;
-    });    
-
-    mejorPeliculaAno = result.slice(result.length-1)
-   //console.log(mejorPeliculaAno);
+    });
+    mejorPeliculaAno = result.slice(result.length - 1)
     return mejorPeliculaAno
 }
-
-
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
